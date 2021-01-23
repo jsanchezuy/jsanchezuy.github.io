@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Multiple OpenGL shaders in one file &middot; Jorge Sánchez</title>
+        <meta name="description" content="If you have been using OpenGL for a while, you probably have a lot of shader files, maybe one for each programmable stage of the pipeline. At some point during development the directory that contains the shaders becomes a mess, managing and opening shader files in your editor becomes tedious. Luckily there&#39;s a way to cram all the programmable shader stages in a single file, reducing the number of files at least by half and calm the neat freak inside.">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.60.1" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Multiple OpenGL shaders in one file">
+<meta property="og:description" content="If you have been using OpenGL for a while, you probably have a lot of shader files, maybe one for each programmable stage of the pipeline. At some point during development the directory that contains the shaders becomes a mess, managing and opening shader files in your editor becomes tedious. Luckily there&#39;s a way to cram all the programmable shader stages in a single file, reducing the number of files at least by half and calm the neat freak inside.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jsanchez.uy/2019-12-9-multiple-shaders-in-one-file/">
+        <link rel="stylesheet" href="https://jsanchez.uy/dist/site.css">
+        <link rel="stylesheet" href="https://jsanchez.uy/dist/syntax.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
+        
+        
+        
+        
+
+    </head>
+    <body>
+        
+
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <h1 class="site-title">
+                                <a href="https://jsanchez.uy/">Jorge Sánchez</a>
+                            </h1>
+                        
+                        
+                            <a class="button-square" href="https://jsanchez.uy/index.xml" aria-label="RSS"><i class="fa fa-rss" aria-hidden="true"></i></a>
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Twitter" aria-label="Twitter" href="https://twitter.com/jsanchezuy" rel="me" >
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" aria-label="Github" href="https://github.com/jsanchezuy" rel="me">
+                                <i class="fa fa-github-alt" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Email" aria-label="Send an Email" href="mailto:jsanchezsilvera@gmail.com">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </a>
+                        
+                    </div>
+
+                    <ul class="site-nav">
+                        
+    <li class="site-nav-item">
+        <a href="/">Blog</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a href="/project/">Projects</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a href="/page/contact/">Contact</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a href="/page/about/">About</a>
+    </li>
+
+
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container">
+        <header class="post-header">
+    <h1 class="post-title">Multiple OpenGL shaders in one file</h1>
+    
+</header>
+
+        <div class="post-content clearfix">
+    
+
+    <p>If you have been using OpenGL for a while, you probably have a lot of
+shader files, maybe one for each programmable stage of the
+pipeline. At some point during development the directory that contains
+the shaders becomes a mess, managing and opening shader files
+in your editor becomes tedious. Luckily there's a way to cram all the
+programmable shader stages in a single file, reducing the number of
+files at least by half and calm the neat freak inside.</p>
+<p>These are the two things that make this trick possible.</p>
+<ol>
+<li><a href="https://www.khronos.org/opengl/wiki/Core_Language_(GLSL)#Preprocessor_directives">#ifdef - glsl's preprocessor directive</a></li>
+<li><a href="http://docs.gl/gl3/glShaderSource">glShaderSource()</a></li>
+</ol>
+<p>The idea is to separate different shader stages inside an #ifdef blocks and setting the corresponding #define directive for the shader stage.</p>
+<p>Here's an example of what a shader might look like using this method.
+{% highlight glsl %}
+#ifdef VERTEX_SHADER</p>
+<p>layout(location = 0) in vec3 Vertices;
+layout(location = 1) in vec3 Normals;</p>
+<p>uniform mat4 Model;
+uniform mat4 View;
+uniform mat4 Projection;</p>
+<p>void main()
+{
+gl_Position = Projection * View * Model * vec4(Vertices, 1.0);
+}</p>
+<p>#endif</p>
+<p>#ifdef FRAGMENT_SHADER</p>
+<p>uniform vec3 Color;
+out vec4 FragColor;</p>
+<p>void main()
+{
+FragColor = vec4(Color, 1.0);
+}</p>
+<p>#endif
+{% endhighlight %}</p>
+<p>Shader compilation looks something like this:
+{% highlight c++ %}</p>
+<p>char *SourceFile = ReadTextFile(&ldquo;MyShader.glsl&rdquo;);</p>
+<p>// Compile Vertex Shader
+u32 VertexShaderObject = glCreateShader(GL_VERTEX_SHADER);
+char *VertexSource[2] = {&quot;#version 330 core\n#define VERTEX_SHADER\n&rdquo;, SourceFile};
+glShaderSource(VertexShaderObject, 2, VertexSource, NULL);
+glCompileShader(VertexShaderObject);</p>
+<p>// Compile Fragment Shader
+u32 FragmentShaderObject = glCreateShader(GL_FRAGMENT_SHADER);
+char *FragmentSource[2] = {&quot;#version 330 core\n#define FRAGMENT_SHADER\n&rdquo;, SourceFile};
+glShaderSource(FragmentShaderObject, 2, FragmentSource, NULL);
+glCompileShader(FragmentShaderObject);</p>
+<p>// Compile other shader stages</p>
+<p>// Link program
+u32 FinalProgram = glCreateProgram();
+glAttachShader(FinalProgram, VertexShaderObject);
+glAttachShader(FinalProgram, FragmentShaderObject);
+glLinkProgram(Result);
+{% endhighlight %}
+Notice that before calling glShaderSource we create an array of two
+pointers to char, the first one contains glsl's #version preprocessor
+directive and the token that defines each shader. In the case of the
+vertex shader the first string looks like this &ldquo;#version 330
+core\n#define VERTEX_SHADER\n&rdquo;.  Sadly the #version directive needs to
+be the first line in a shader or else compilation fails. Setting the
+shader version like this is not as pretty or tidy as we may want but
+it's a tradeoff i'm willing to make. When calling glShaderSource we
+set the second parameter to &ldquo;2&rdquo; indicating 2 strings and set the
+string to our newly created array.</p>
+<p>I hope you find this useful.</p>
+
+</div>
+    </article>
+</div>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a href="https://jsanchez.uy/">Jorge Sánchez</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#" aria-label="Back to Top">
+                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <p class="footer-copyright">
+                    <span>&copy; 2019 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
+                </p>
+                <p class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </p>
+            </div>
+        </footer>
+
+        <script src="https://jsanchez.uy/js/jquery-1.11.3.min.js"></script>
+        <script src="https://jsanchez.uy/js/jquery.fitvids.js"></script>
+        <script src="https://jsanchez.uy/js/scripts.js"></script>
+    </body>
+</html>
+

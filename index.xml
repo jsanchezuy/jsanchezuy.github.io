@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jorge Sánchez</title>
+    <link>https://jsanchez.uy/</link>
+    <description>Recent content on Jorge Sánchez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Jorge Sánchez</copyright>
+    <lastBuildDate>Tue, 26 Mar 2019 08:47:11 +0100</lastBuildDate>
+    
+	<atom:link href="https://jsanchez.uy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My First Post</title>
+      <link>https://jsanchez.uy/2017-7-13-pong/</link>
+      <pubDate>Tue, 26 Mar 2019 08:47:11 +0100</pubDate>
+      
+      <guid>https://jsanchez.uy/2017-7-13-pong/</guid>
+      <description>Just another pong clone
+{% include youtube.html id=&#39;FNkBImIXWIY&amp;rsquo; %}
+Here&#39;s the source code</description>
+    </item>
+    
+    <item>
+      <title>Avoiding double allocation for structs and data</title>
+      <link>https://jsanchez.uy/2020-6-26-avoiding-double-allocation-for-structs-and-data/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jsanchez.uy/2020-6-26-avoiding-double-allocation-for-structs-and-data/</guid>
+      <description>Let&#39;s say you want to allocate a struct that contains a pointer to other data that also needs allocation. The natural way to do it is calling malloc twice, one for the container and one for the data.
+{% highlight c++ %} /* The natural way to allocate a struct and its data */ struct sample_type { float A; uint32_t B; uint8_t C; bool D; bool E; bool F; bool G; };</description>
+    </item>
+    
+    <item>
+      <title>Gists/Snippets</title>
+      <link>https://jsanchez.uy/2019-12-7-glsl-gists/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jsanchez.uy/2019-12-7-glsl-gists/</guid>
+      <description>{% highlight c++ %} // Normalize an input value to 0,1 range. f32 Normalize(f32 Input, f32 Minimum, f32 Maximum) { return (Input - Minimum) / (Maximum - Minimum); }
+// Map one range onto another. Ex: Map Value Between 0-1800 to -20, 20. f32 Remap(f32 Input, f32 InputStart, f32 InputEnd, f32 OutputStart, f32 OutputEnd) { return (Input - InputStart) / (InputEnd - InputStart) * (OutputEnd - OutputStart) + OutputStart; } {% endhighlight %}</description>
+    </item>
+    
+    <item>
+      <title>Handling Hybrid GPU&#39;s in Windows</title>
+      <link>https://jsanchez.uy/2019-12-7-handling-hybrid-gpus-in-windows/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jsanchez.uy/2019-12-7-handling-hybrid-gpus-in-windows/</guid>
+      <description>Hybrid GPU&#39;s are everywhere these days and yet it is not obvious how to run your program using the discrete GPU.
+I can think of 5 ways on how to get this done:
+ Your software is popular enough that the GPU manufacturer includes an &amp;ldquo;application profile&amp;rdquo; for your software in their driver. This profile is basically the GPU configuration/settings for an executable. When your software has no application profile, the default graphic card depends on the global GPU settings but it is most likely the integrated gpu.</description>
+    </item>
+    
+    <item>
+      <title>Making multi-line macros behave as a functions</title>
+      <link>https://jsanchez.uy/2019-6-22-multi-line-function-macro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jsanchez.uy/2019-6-22-multi-line-function-macro/</guid>
+      <description>When you need a muli-line macro to have its own scope and behave as a regular function would, the naive way is to simply wrap the macro statements inside curly brackets. Now, time has passed and suddenly program compilation is failing, and as usual the compiler output is not helping. The naive macro implementation has come back to bite you.
+Here&#39;s the naive implementation, let&#39;s see how to fix it.</description>
+    </item>
+    
+    <item>
+      <title>Multiple OpenGL shaders in one file</title>
+      <link>https://jsanchez.uy/2019-12-9-multiple-shaders-in-one-file/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jsanchez.uy/2019-12-9-multiple-shaders-in-one-file/</guid>
+      <description>If you have been using OpenGL for a while, you probably have a lot of shader files, maybe one for each programmable stage of the pipeline. At some point during development the directory that contains the shaders becomes a mess, managing and opening shader files in your editor becomes tedious. Luckily there&#39;s a way to cram all the programmable shader stages in a single file, reducing the number of files at least by half and calm the neat freak inside.</description>
+    </item>
+    
+  </channel>
+</rss>

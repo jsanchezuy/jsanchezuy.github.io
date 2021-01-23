@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://jsanchez.uy/</loc>
+    <lastmod>2019-03-26T08:47:11+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/2017-7-13-pong/</loc>
+    <lastmod>2019-03-26T08:47:11+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/2020-6-26-avoiding-double-allocation-for-structs-and-data/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/2019-12-7-glsl-gists/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/2019-12-7-handling-hybrid-gpus-in-windows/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/2019-6-22-multi-line-function-macro/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/2019-12-9-multiple-shaders-in-one-file/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/tags/</loc>
+  </url>
+  
+</urlset>
