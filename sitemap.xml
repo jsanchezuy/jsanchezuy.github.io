@@ -4,32 +4,54 @@
   
   <url>
     <loc>https://jsanchez.uy/</loc>
-    <lastmod>2019-03-26T08:47:11+01:00</lastmod>
+    <lastmod>2021-01-23T15:50:43-03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jsanchez.uy/2017-7-13-pong/</loc>
-    <lastmod>2019-03-26T08:47:11+01:00</lastmod>
+    <loc>https://jsanchez.uy/project/</loc>
+    <lastmod>2021-01-23T15:50:43-03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jsanchez.uy/2020-6-26-avoiding-double-allocation-for-structs-and-data/</loc>
+    <loc>https://jsanchez.uy/contact/</loc>
+    <lastmod>2021-01-23T15:50:34-03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jsanchez.uy/2019-12-7-glsl-gists/</loc>
+    <loc>https://jsanchez.uy/about/</loc>
+    <lastmod>2021-01-23T15:47:22-03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jsanchez.uy/2019-12-7-handling-hybrid-gpus-in-windows/</loc>
+    <loc>https://jsanchez.uy/07/12/2019/glsl-gists/</loc>
+    <lastmod>2019-12-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jsanchez.uy/2019-6-22-multi-line-function-macro/</loc>
+    <loc>https://jsanchez.uy/post/</loc>
+    <lastmod>2019-12-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jsanchez.uy/2019-12-9-multiple-shaders-in-one-file/</loc>
+    <loc>https://jsanchez.uy/22/06/2019/multi-line-function-macro/</loc>
+    <lastmod>2019-06-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/13/07/2017/pong/</loc>
+    <lastmod>2017-07-13T08:47:11+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/01/01/1/avoiding-double-allocation-for-structs-and-data/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/01/01/1/handling-hybrid-gpus-in-windows/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/01/01/1/multiple-shaders-in-one-file/</loc>
   </url>
   
   <url>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Handling Hybrid GPU&#39;s in Windows &middot; </title>
+        <meta name="description" content="Hybrid GPU&#39;s are everywhere these days and yet it is not obvious how to run your program using the discrete GPU.
+I can think of 5 ways on how to get this done:
+ Your software is popular enough that the GPU manufacturer includes an &ldquo;application profile&rdquo; for your software in their driver. This profile is basically the GPU configuration/settings for an executable. When your software has no application profile, the default graphic card depends on the global GPU settings but it is most likely the integrated gpu.">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.60.1" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Handling Hybrid GPU&#39;s in Windows">
+<meta property="og:description" content="Hybrid GPU&#39;s are everywhere these days and yet it is not obvious how to run your program using the discrete GPU.
+I can think of 5 ways on how to get this done:
+ Your software is popular enough that the GPU manufacturer includes an &ldquo;application profile&rdquo; for your software in their driver. This profile is basically the GPU configuration/settings for an executable. When your software has no application profile, the default graphic card depends on the global GPU settings but it is most likely the integrated gpu.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jsanchez.uy/01/01/1/handling-hybrid-gpus-in-windows/">
+        <link rel="stylesheet" href="https://jsanchez.uy/dist/site.css">
+        <link rel="stylesheet" href="https://jsanchez.uy/dist/syntax.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
+        
+        
+        
+        
+
+    </head>
+    <body>
+        
+
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <h1 class="site-title">
+                                <a href="https://jsanchez.uy/">Jorge Sánchez</a>
+                            </h1>
+                        
+                        
+                            <a class="button-square" href="https://jsanchez.uy/index.xml" aria-label="RSS"><i class="fa fa-rss" aria-hidden="true"></i></a>
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Twitter" aria-label="Twitter" href="https://twitter.com/jsanchezuy" rel="me" >
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" aria-label="Github" href="https://github.com/jsanchezuy" rel="me">
+                                <i class="fa fa-github-alt" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Email" aria-label="Send an Email" href="mailto:jsanchezsilvera@gmail.com">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </a>
+                        
+                    </div>
+
+                    <ul class="site-nav">
+                        
+    <li class="site-nav-item">
+        <a href="/">Blog</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a href="/project/">Projects</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a href="/contact/">Contact</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a href="/about/">About</a>
+    </li>
+
+
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Handling Hybrid GPU&#39;s in Windows</h1>
+    
+    <p class="post-date">
+        <span>Published <time datetime="0001-01-01" itemprop="datePublished">Mon, Jan 1, 0001</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="#" itemprop="url" rel="author"></a>
+            </span>
+        </span>
+    </p>
+    
+        <p class="post-reading post-line">
+            <span>Estimated reading time: 2 min</span>
+        </p>
+    
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    <p>Hybrid GPU's are everywhere these days and yet it is not obvious how to run your program using the discrete GPU.</p>
+<p>I can think of 5 ways on how to get this done:</p>
+<ol>
+<li>Your software is popular enough that the GPU manufacturer includes an &ldquo;application profile&rdquo; for your software in their driver. This profile is basically the GPU configuration/settings for an executable. When your software has no application profile, the default graphic card depends on the global GPU settings but it is most likely the integrated gpu.</li>
+<li>You can manually create an application profile for your executable. The problem is that this profile will need to be manually created for each install. This may be useful if it's a silly program you alone are going to run, but not really an option if you plan to ship software, even if it's to family and friends.</li>
+<li>Oddly enough you can trick the driver to use an application profile made for other software by simply renaming your executable to something like &ldquo;Doom3.exe&rdquo;. Not really a solution but it's comforting to know simple tricks like these still exist in 2019.</li>
+<li>Linking your program against nVidia's defined libraries such as &ldquo;nvapi64.dll&rdquo;(The list of libraries is defined in the manual at the bottom of the page). Calling HMODULE Lib =  LoadLibraryA(&ldquo;nvapi64.dll&rdquo;) in main function does the trick. This seems to be the old way of doing things, continue reading for a better solution.</li>
+<li>The best solution i know is to include the following code at global scope.</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-C++" data-lang="C++"><span class="cp">#</span><span class="cp">ifdef _WIN32</span><span class="cp">
+</span><span class="cp"></span><span class="k">extern</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">C</span><span class="s">&#34;</span>
+<span class="p">{</span>
+    <span class="c1">// nVidia
+</span><span class="c1"></span>    <span class="kr">__declspec</span><span class="p">(</span> <span class="n">dllexport</span> <span class="p">)</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">NvOptimusEnablement</span> <span class="o">=</span> <span class="mh">0x00000001</span><span class="p">;</span>
+    <span class="c1">// AMD
+</span><span class="c1"></span>    <span class="kr">__declspec</span><span class="p">(</span> <span class="n">dllexport</span> <span class="p">)</span> <span class="kt">int</span> <span class="n">AmdPowerXpressRequestHighPerformance</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">#</span><span class="cp">endif</span><span class="cp">
+</span></code></pre></div><p>I have only tested the code on nVidia Optimus since it's the only thing i have.</p>
+<p>If you would like to know more, you should read the following manuals for Hybrid GPU's, they are <em>really</em> <em>really</em> short (4-5 pages).</p>
+<p><a href="http://developer.download.nvidia.com/devzone/devcenter/gamegraphics/files/OptimusRenderingPolicies.pdf">nVidia's hybrid gpu manual</a></p>
+<p><a href="https://gpuopen.com/amdpowerxpressrequesthighperformance/">AMD's hybrid gpu manual</a></p>
+
+</div>
+
+        <footer class="post-footer clearfix"><div class="share">
+            <a class="icon-twitter" href="https://twitter.com/share?text=Handling%20Hybrid%20GPU%27s%20in%20Windows&url=https%3a%2f%2fjsanchez.uy%2f01%2f01%2f1%2fhandling-hybrid-gpus-in-windows%2f"
+                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" aria-label="Share on Twitter">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fjsanchez.uy%2f01%2f01%2f1%2fhandling-hybrid-gpus-in-windows%2f"
+                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" aria-label="Share on Facebook">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+    </div>
+</footer>
+
+        
+    <div class="comments">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jsanchezuy" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    </article>
+</div>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a href="https://jsanchez.uy/">Jorge Sánchez</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#" aria-label="Back to Top">
+                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <p class="footer-copyright">
+                    <span>&copy; 2021 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
+                </p>
+                <p class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </p>
+            </div>
+        </footer>
+
+        <script src="https://jsanchez.uy/js/jquery-1.11.3.min.js"></script>
+        <script src="https://jsanchez.uy/js/jquery.fitvids.js"></script>
+        <script src="https://jsanchez.uy/js/scripts.js"></script>
+    </body>
+</html>
+
