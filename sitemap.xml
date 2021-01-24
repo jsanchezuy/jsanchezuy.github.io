@@ -23,12 +23,27 @@
   </url>
   
   <url>
+    <loc>https://jsanchez.uy/26/06/2020/avoiding-double-allocation-for-structs-and-data/</loc>
+    <lastmod>2020-06-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/post/</loc>
+    <lastmod>2020-06-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jsanchez.uy/09/12/2019/multiple-shaders-in-one-file/</loc>
+    <lastmod>2019-12-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jsanchez.uy/07/12/2019/glsl-gists/</loc>
     <lastmod>2019-12-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jsanchez.uy/post/</loc>
+    <loc>https://jsanchez.uy/07/12/2019/handling-hybrid-gpus-in-windows/</loc>
     <lastmod>2019-12-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -40,18 +55,6 @@
   <url>
     <loc>https://jsanchez.uy/13/07/2017/pong/</loc>
     <lastmod>2017-07-13T08:47:11+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jsanchez.uy/01/01/1/avoiding-double-allocation-for-structs-and-data/</loc>
-  </url>
-  
-  <url>
-    <loc>https://jsanchez.uy/01/01/1/handling-hybrid-gpus-in-windows/</loc>
-  </url>
-  
-  <url>
-    <loc>https://jsanchez.uy/01/01/1/multiple-shaders-in-one-file/</loc>
   </url>
   
   <url>
